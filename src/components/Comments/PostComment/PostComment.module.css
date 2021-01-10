@@ -1,0 +1,63 @@
+.commentInput{
+    width: 100%;
+    display: block;
+    box-sizing: padding-box;
+    overflow: hidden;
+    background-color: #fff;
+  
+    font-size: 16px;
+    box-shadow: 2px 2px 8px rgba(black, .3);
+    border: none;
+    border-bottom: 2px solid grey;
+    resize: none;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+.commentInput:focus{
+    outline: none;
+    border-bottom: 2px solid black;
+}
+
+.commentButtons{
+  
+  margin-top: 15px;
+}
+.commentButtons button{
+  width: 150px;
+  height: 50px;
+  font-size: 18px;
+}
+.commentButton{
+  background-color: #00aeff;
+  border: 3px solid #006796;
+  color: white;
+  font-weight: bolder;
+}
+.cancelButton{
+  background-color: white;
+  border: none;
+  color: grey;
+}
+.cancelButton:hover{
+  color: black;
+}
+.commentButton:hover{
+  background-color: #006796;
+}
+.cancelButton:focus{
+  outline: none
+}
+.punctuationButtons{
+  display: flex;
+  justify-content: space-between;
+}
+.puntuation{
+  margin-top: 23px;
+  
+}
+.puntuation span {
+  font-weight: bolder;
+  font-size: 20px;
+  
+}

@@ -1,0 +1,20 @@
+.commentsIntro{
+    text-align: center;
+    margin-top: 100px;
+}
+.commentsIntro h2{
+    font-size: 48px;
+    margin-bottom: 60px;
+}
+.commentsIntro h3{
+    font-size: 56px
+}
+.commentsIntro a:hover{
+    text-decoration: none;
+}
+.commentsContainer{
+    margin: 80px 50px;
+}
+.commentsContainer h2{
+    font-weight: bold;
+}

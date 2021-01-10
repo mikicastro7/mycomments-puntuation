@@ -1,0 +1,23 @@
+  .headercontainer{
+    display: flex;
+    background-color: #20232a;
+    height: 61.5px;
+    align-items: center;
+  }
+  .headerTitle{
+      flex: 0 1 auto;
+      position: absolute;             
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      margin-bottom: 0px;
+  }
+  .headerMyProjects{
+    color: #61DBFB;
+    font-size: 24px;
+    margin-left: 8%;
+  }
+  .headerMyProjects:hover{
+    color: #61DBFB;
+    text-decoration: none;
+  }
