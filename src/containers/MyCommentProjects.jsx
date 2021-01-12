@@ -2,32 +2,20 @@ import React, { Component } from 'react'
 import {Route} from "react-router-dom";
 import Projects from '../components/Projects/Projects'
 import Comments from './myComments'
+import Axios from 'axios';
 
 export default class MyComment extends Component {
     state = {
-        projects: [
-            {
-                id: 1,
-                name: "MyTodoList",
-            },
-            {
-                id: 2,
-                name: "MyComments",
-            },
-            {
-                id: 3,
-                name: "MyComments",
-            },
-            {
-                id: 4,
-                name: "MyComments",
-            },
-            {
-                id: 5,
-                name: "MyComments",
-            },
-        ]
+        projects: []
     }
+
+    componentDidMount() {
+        Axios.get('projects')
+          .then(response => {
+            console.log(response)
+            this.setState({projects : response.data.projects})
+          })
+      }
 
     render() {
         return (

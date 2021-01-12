@@ -8,7 +8,7 @@ import React, { Component } from 'react'
 export default class EditComment extends Component {
 
     state = {
-        comment: this.props.comment.commentText,
+        comment: this.props.comment.comment_text,
         rating: this.props.comment.rating,
     }
 

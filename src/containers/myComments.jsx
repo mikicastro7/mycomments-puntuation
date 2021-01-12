@@ -4,60 +4,67 @@ import { Link } from 'react-router-dom';
 import style from './myComments.module.css';
 import PostComment from '../components/Comments/PostComment/PostComment'
 import Comments from '../components/Comments/Comments'
+import Axios from 'axios';
 
 export default class myComments extends Component {
     state = {
-        comments: [
-            {
-                id : 1,
-                commentText: "Comentari 1",
-                projectId: 1,
-                userId: 1,
-                rating: 4,
-                date: "01/08/2021 22:35:00"
-            },
-            {
-                id : 2,
-                commentText: "Comentari 2",
-                projectId: 1,
-                userId: 1,
-                rating: 3,
-                date: "01/01/2021 12:00:00"
-            },
-            {
-                id : 3,
-                commentText: "Comentari 3",
-                projectId: 1,
-                userId: 1,
-                rating: 3,
-                date: "01/08/2020 21:35:00"
-            }
-        ]
+        comments: []
     }
 
+    componentDidMount() {
+        Axios.get('projectComments/' + this.props.projectId)
+          .then(response => {
+            console.log(response.data)
+            this.setState({comments : response.data.comments})
+          })
+      }
+
     onComment = (comment, rating) => {
-        let today = new Date();
-        this.setState({
-            comments: this.state.comments.concat({
-                id: Math.random(),
-                commentText: comment,
-                projectId: 1,
-                userId: 1,
-                rating: rating,
-                date: today.getFullYear() + "/" + (today.getMonth()+1) + "/" + today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+        Axios({
+            method: 'post',
+            url: 'comment',
+            data: {
+              comment_text : comment,
+              rating : rating,
+              project_id : this.props.projectId,
+              
+            }
+        }).then(response =>{
+            console.log(response)
+            const newComment = {
+                
+              id : response.data.comments.id,
+              comment_text : comment,
+              rating : rating,
+              project_id : this.props.projectId,
+              created_at : response.data.comments.created_at
+            }
+            this.setState({
+              comments : [...this.state.comments, newComment]
             })
-        })
+        });
     }
+
+
     onCommentEdit = (commentText, rating, id) => {
         this.setState({
             comments: this.state.comments.map(comment => {
-                if (comment.id === id) {
-                    comment.commentText = commentText
-                    comment.rating = rating
-                }
-                return comment
+              if(comment.id === id){
+                Axios({
+                  method: 'patch',
+                  url: 'comment/' + id,
+                  data: {
+                    comment_text : commentText,
+                    rating : rating,
+                    project_id : this.props.projectId
+                  }
+                });
+                  comment.comment_text = commentText
+                  comment.rating = rating
+              }
+              return comment
             })
-        })
+          })
     }
 
     deleteComment = (id) => {
@@ -66,6 +73,7 @@ export default class myComments extends Component {
                 comment.id !== id
             )
         })
+        Axios.delete('comment/' + id)
     }
 
 

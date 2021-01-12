@@ -59,7 +59,6 @@ export default class Comment extends Component {
 
 
     cancelEdit = (hola) => {
-        console.log(hola)
         this.setState({
             edit: false
         })
@@ -73,7 +72,7 @@ export default class Comment extends Component {
                 <div className={style.topComment}>
                     <div>
                         <span className={style.username}>Miquel</span>
-                        <span className={style.postedTime}>{this.getTime(this.props.comment.date)}</span>
+                        <span className={style.postedTime}>{this.getTime(this.props.comment.created_at)}</span>
                     </div>
                     <Dropdown>
                         <Dropdown.Toggle className={style.dropdownI} id="dropdown-basic">
@@ -95,7 +94,7 @@ export default class Comment extends Component {
                     starRatedColor="#ffd900"
                     starHoverColor="#ffcc00"
                 />
-                <p className={style.commentText}>{this.props.comment.commentText}</p>
+                <p className={style.commentText}>{this.props.comment.comment_text}</p>
                 </React.Fragment>}
                 
             </div>
